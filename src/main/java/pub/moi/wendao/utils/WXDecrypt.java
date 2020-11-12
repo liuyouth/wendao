@@ -28,7 +28,7 @@ public class WXDecrypt {
     private static final String WATERMARK = "watermark";
     private static final String PHONE = "phoneNumber";
 
-    private static final String appId = "wx6e917c88b0bee337";
+    private static final String appId = "";
 
     /**
      * 解密数据获取微信步数

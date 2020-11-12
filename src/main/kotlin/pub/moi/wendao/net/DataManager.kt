@@ -64,6 +64,6 @@ class DataManager() {
      * 微信登陆
      */
     fun wxLogin(code:String): Observable<WxResult> {
-        return netService.wxLogin("wx6e917c88b0bee337","37c2a675f5a61cc019e3e89ca0c15f54",code,"authorization_code")
+        return netService.wxLogin("","",code,"authorization_code")
     }
 }
