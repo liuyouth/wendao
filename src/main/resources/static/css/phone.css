@@ -1,0 +1,109 @@
+.cell{
+    padding: 5px;
+    border-bottom: 1px solid #efefef;
+    transition: all ease 1s;
+}
+.cell::before{
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    border-radius: 10px;
+    display: inline-grid;
+    background: #efefef;
+    content: " ";
+    margin-right: 10px;
+    margin-left: 20px;
+}
+.one.cell span{    color: #fd4c5d;}
+.two.cell span{    color: #fd4c5d;}
+.three.cell span{    color: #fd4c5d;}
+.one::before{
+    background: #fd4c5d;
+}
+.two::before{
+    background: #fd4c5d;
+}
+.three::before{
+    background: #fd4c5d;
+}
+.cell span{
+    height: 22px;
+    line-height: 22px;
+    color: #999;
+    width: 10%;
+    display: inline-block;
+}
+.cell:hover{
+    color: #fd4c5d;
+}
+.thh{
+    display: none;
+    width: 100%;
+    overflow: hidden;
+}
+.thh div{
+    padding: 10px;
+    float: left;
+}
+.clear{
+    clear: both;
+    padding: 0px;
+}
+.cellBox{
+    padding: 10px;
+    color: #999;
+}
+.cellBox:hover .add{
+    display: block;
+
+}
+.add{
+    display: none;
+
+}
+.cellBox div {
+    padding: 3px;
+    float: left;
+    transition: ease all .5s;
+}
+.contentt{
+    border-radius: 4px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    background: #fff;
+    margin: 2% 2% 2% 2%;
+    transition: all ease .5s;
+    overflow: hidden;
+}
+
+
+.type{
+    color: #666;
+    margin-left: 20px;
+}
+.size{
+    color: #666;
+    margin-left: 20px;
+}
+.color{
+    color: #666;
+    margin-left: 20px;
+}
+.active{
+    color: #fd4c5d;
+}
+
+.banner{
+     margin: 2% 2% 2% 2%;
+     overflow: hidden;
+}
+
+.bannerItem{
+    min-height: 35px;
+    padding: 8px;
+    color: #fff;
+}
+.hot{
+    font-size: 30px;
+    color: #ff6767;
+}

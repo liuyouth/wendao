@@ -1,0 +1,108 @@
+buildscript {
+    ext {
+        kotlinVersion = '1.1.3-2'
+        springBootVersion = '1.5.4.RELEASE'
+//        springBootVersion = '2.2.4'
+        retrofit2ConverterGsonVersion = '2.1.0'
+        retrofit2AConverterScalarsVersion = '2.0.0'
+        retrofit2AdapterRxjavaVersion = '2.1.0'
+        okhttp3LoggingInterceptorVersion = '3.4.1'
+        rxandroidVersion = '2.0.2'
+        rxjavaVersion = '2.1.8'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven{  url 'https://dl.bintray.com/kotlin/kotlin-dev/'}
+//        maven()
+        mavenCentral()
+//        google()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion"
+    }
+}
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+//apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions {
+        languageVersion = "1.2"
+    }
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+//    google()
+//    jcenter()
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+//    compile('org.springframework.boot:spring-boot-starter-freemarker')
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
+    compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.22'
+// https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on
+    compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.66'
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
+    compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("mysql:mysql-connector-java")
+    //providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-redis
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-redis', version: '1.4.7.RELEASE'
+
+// 项目为何隔一段时间就会丢失很多包
+
+
+    //Retrofit 网络请求
+    compile "com.squareup.retrofit2:converter-gson:${retrofit2ConverterGsonVersion}"
+    compile "com.squareup.retrofit2:converter-scalars:${retrofit2AConverterScalarsVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${retrofit2AdapterRxjavaVersion}"
+    compile "com.squareup.okhttp3:logging-interceptor:${okhttp3LoggingInterceptorVersion}"
+    //Rx 函数式编程支持
+    compile "io.reactivex.rxjava2:rxjava:${rxjavaVersion}"
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+
+
+
+
+
+}
+
+//jar {
+//    baseName = 'releaseLog'
+//    version = '0.0.1'
+//    manifest {
+//        attributes "Manifest-Version": 1.0,
+//                'Main-Class': 'pub.moi.wendao.Application'
+//    }
+//}

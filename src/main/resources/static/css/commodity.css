@@ -1,0 +1,100 @@
+
+
+.infoBox{
+  background: #fff;
+    min-height: 110px;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 5px #c0cbce;
+    box-shadow: 1px 1px 10px 0px #c0cbce;
+    color: #7092B2;
+
+}
+.header{
+  /* background:linear-gradient(to left, #6E7686, #6E7686); */
+      box-shadow: 1px 1px 10px 0px #c0cbce;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  color: #333;
+  font-size: 20px;
+  background: #fff;
+  height: 44px;
+}
+body{
+  min-height: 100%;
+  /* background:linear-gradient(to left, #c3bebdc4, #6e7686ab); */
+  background: #fff;
+}
+.hot{
+  font-size: 18px;
+  color:#F55C70;
+}
+.max{width:100%;height:auto;}
+.min{width:100px;height:auto;}
+.imgBox{
+  transition: all .5s ease;
+  height: 0px;
+}
+.centerVertical{
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+.pic{
+  border-radius: 8px 8px 0px 5px;
+    float: left;
+    position: relative;
+    z-index: 2;
+    -webkit-box-shadow: 2px 2px 5px #8dc3ce;
+    box-shadow: 1px 1px 10px 0px #8dc3ce;
+}
+.blackBox{
+  height: 100%;
+  width: 100%;
+  background: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.blackBox .images{
+	position:absolute;
+	top:0;left:0;right:0;bottom:0;
+	margin:auto;
+	display:block;
+	/*以上是绝对居中的css*/
+
+	height:auto;
+	width:auto;
+	max-height:300px;
+	max-width:300px;
+	/*以上是为了让图片不超出范围的css*/
+
+
+}
+.logo{
+  background: -webkit-linear-gradient(left,#FF9800,#FFC107);
+  -webkit-background-clip: text;
+}
+.price{
+  font-size: 13px;
+  font-weight: 400;
+  color: #474E5D;
+  position: absolute;
+    /*bottom: 20px;*/
+}
+.playicon{
+  overflow: hidden;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 3;
+  background: #ffffffbf;
+  border-radius: 4px;
+}
+#list{
+  margin-top: 60px;
+}
