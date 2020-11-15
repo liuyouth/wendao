@@ -1,16 +1,16 @@
 package pub.moi.wendao.controller
 
-import pub.moi.wendao.authorization.annotation.Authorization
-import pub.moi.wendao.authorization.annotation.CurrentUser
-import pub.moi.wendao.authorization.manager.TokenManager
-import pub.moi.wendao.authorization.manager.impl.RedisTokenManager
+import pub.moi.wendao.java.authorization.annotation.Authorization
+import pub.moi.wendao.java.authorization.annotation.CurrentUser
+import pub.moi.wendao.java.authorization.manager.TokenManager
+import pub.moi.wendao.java.authorization.manager.impl.RedisTokenManager
 import pub.moi.wendao.model.base.User
 import pub.moi.wendao.db.UserRepository
 import pub.moi.wendao.model.base.RBuilder
 import pub.moi.wendao.model.base.Result
 import pub.moi.wendao.net.DataManager
 import pub.moi.wendao.net.WxResult
-import pub.moi.wendao.utils.WXDecrypt
+
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.util.StringUtils.isEmpty
@@ -94,7 +94,7 @@ class UserController {
 //                        group.user = repository.save(t.getData())
 //                        toDoGroupRepository.save(group)
 //                        RBuilder.seccess(group.user)
-                        RBuilder.seccess(repository.save(t.getData()))
+                        RBuilder.seccess(repository.save(t.getData()!!))
                     } else {
                         it.getData()?.let {
                             user.token = it.token
@@ -143,14 +143,17 @@ class UserController {
         var result: Result<User>? = null
 
         dataManager.login(userName, passWord).subscribe({ t: Result<User>? ->
+            println("ttt"+t)
             t?.let {
                 if (t.getCode() == 200) {
                     var user = repository.findByNumber(t.getData()!!.number)
                     // 用户不存在 初始化诗句
                     if (user == null) {
+                        t.getData()?.let {
+                            user = repository.save(it)
+                            t.getData()!!.id = 0L
+                        }
 
-                        user = repository.save(t.getData())!!
-                        t.getData()!!.id = 0L
 //                        val group = ToDoGroup()
 //                        group.name = "小透明"
 //                        group.info = "我是默认的清单不可删除哦"
@@ -179,25 +182,32 @@ class UserController {
                         RBuilder.seccess(user)
                     } else {
                         it.getData()?.let {
-                            user.token = it.token
-                            repository.save(user)
+                            user?.token = it.token
+                            repository.save(user!!)
+                            user?.let {
+                                result = RBuilder.seccess(it)
+                            }
+
                         }
-                        result = RBuilder.seccess(user)
+
                     }
                     //如果有code 表示是从微信小程序过来的
                     if (code.isNotEmpty())
                         dataManager.wxLogin(code).subscribe({ t: WxResult ->
                             if (!t.session_key.isNullOrEmpty()) {
-                                user.openid = t.openid
-                                user.session_key = t.session_key
-                                repository.save(user)
-                                result = RBuilder.seccess(user)
+                                user?.let {
+                                it.openid = t.openid
+                                it.session_key = t.session_key
+                                repository.save(it)
+                                result = RBuilder.seccess(it)
+                                }
                             }
                         })
 
                 } else result = t
             }
         }, { t ->
+            println(t.message)
             result = RBuilder.failed(t.message!!)
         })
 
@@ -210,10 +220,10 @@ class UserController {
     @GetMapping("/show")
     @Authorization
     @ResponseBody
-    fun get(@CurrentUser user: User?): Result<User> {
+    fun get(@CurrentUser user: User): Result<User> {
         println("weeeeeee " + user)
-        user?.let {
-            val mUser = repository.findByNumber(user.number)
+        val mUser = repository.findByNumber(user.number)
+        mUser?.let {
             return RBuilder.seccess(mUser)
         }
         return RBuilder.failed("暂时无法获取！")
@@ -223,7 +233,7 @@ class UserController {
     @PutMapping("/")
     fun update(@CurrentUser user: User, @RequestBody body: User): Result<User> {
 
-        body.id = repository.findByNumber(body.number!!).id
+        body.id = repository.findByNumber(body.number)?.id?:0
         return RBuilder.seccess(repository.save(body))
     }
     class saveStepNum{
@@ -248,16 +258,17 @@ class UserController {
 ////        return RBuilder.failed("dddd")
 //    }
 
-    /**
-     * admin 接口 直接获取 某个用户信息
-     */
-    @GetMapping("/show/id/{id}")
-    @ResponseBody
-    fun get(@PathVariable("id") id: String): Result<User> {
-        println(id.toLong().toString() + "id")
-        println(repository.findOne(id.toLong()))
-        return RBuilder.seccess(repository.findOne(id.toLong()))
-    }
+//
+//    /**
+//     * admin 接口 直接获取 某个用户信息
+//     */
+//    @GetMapping("/show/id/{id}")
+//    @ResponseBody
+//    fun get(@PathVariable("id") id: String): Result<User> {
+//        println(id.toLong().toString() + "id")
+//        println(repository.findOne(id.toLong()))
+//        return RBuilder.seccess(repository.findOne(id.toLong()))
+//    }
 
 
     @GetMapping("/show/{name}")

@@ -1,16 +1,12 @@
 package pub.moi.wendao.net
 
 
+import io.reactivex.Observable
 import pub.moi.wendao.model.base.Result
-import pub.moi.wendao.model.base.SearchResult
 import pub.moi.wendao.model.base.User
 
 
-import io.reactivex.Observable
-import org.apache.catalina.mbeans.UserMBean
 import retrofit2.http.*
-
-import java.util.ArrayList
 
 interface NetService {
 

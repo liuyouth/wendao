@@ -11,6 +11,7 @@ import javax.crypto.spec.SecretKeySpec
 import org.apache.tomcat.util.codec.binary.Base64
 import org.springframework.util.StringUtils
 import sun.misc.BASE64Decoder
+import kotlin.jvm.Throws
 
 
 /**

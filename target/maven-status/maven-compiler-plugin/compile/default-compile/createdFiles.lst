@@ -1,0 +1,13 @@
+pub/moi/wendao/java/controller/StaticController.class
+pub/moi/wendao/java/authorization/annotation/CurrentUser.class
+pub/moi/wendao/java/utils/WXDecrypt.class
+pub/moi/wendao/java/authorization/manager/impl/RedisTokenManager.class
+pub/moi/wendao/java/authorization/model/TokenModel.class
+pub/moi/wendao/java/authorization/manager/TokenManager.class
+pub/moi/wendao/java/utils/FileUtil.class
+pub/moi/wendao/java/service/impl/StaticServiceImpl.class
+pub/moi/wendao/java/utils/WXDecrypt$WxStepList.class
+pub/moi/wendao/java/service/StaticService.class
+pub/moi/wendao/java/utils/AES.class
+pub/moi/wendao/java/utils/WXDecrypt$dayStep.class
+pub/moi/wendao/java/authorization/resolvers/CurrentUserMethodArgumentResolver.class

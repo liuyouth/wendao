@@ -24,7 +24,7 @@ class Result<T> {
         return data
     }
 
-    fun setData(data: T): Result<T> {
+    fun setData(data: T?): Result<T> {
         this.data = data
         return this
     }

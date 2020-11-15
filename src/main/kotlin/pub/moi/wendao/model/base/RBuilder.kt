@@ -8,7 +8,7 @@ object RBuilder {
     fun <T> seccess(): Result<T> {
         return Result<T>().setCode(200).setStatus(200).setMsg("请求成功！")
     }
-    fun <T> seccess(data: T): Result<T> {
+    fun <T> seccess(data: T?): Result<T> {
         val result = Result<T>().setCode(200).setStatus(200).setMsg("请求成功！").setData(data)
         outLogger.info("return "+gson.toJson(data))
         return result
