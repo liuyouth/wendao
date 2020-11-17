@@ -13,4 +13,5 @@ data class Question(@Id @GeneratedValue(strategy = GenerationType.AUTO)
                     , var postUserNo: Long = 0L// 提交用户编号
                     , var postTime: Long = 0L // 提交时间
                     , var lastUpDateTime: Long = 0L // 最后修改时间
+                    , var isDel:Boolean = false // 删除
 )

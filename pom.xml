@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>pub.moi</groupId>
 	<artifactId>wendao</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>wendao</name>
 	<description>闻道</description>
 
@@ -82,22 +82,30 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.github.lianjiatech</groupId>-->
+<!--			<artifactId>retrofit-spring-boot-starter</artifactId>-->
+<!--			<version>2.0.2</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>converter-gson</artifactId>
-			<version>2.1.0</version>
+			<version>2.9.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>converter-scalars</artifactId>
 			<version>2.1.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-scalars -->
 <!--		<dependency>-->
-<!--			<groupId>com.github.pagehelper</groupId>-->
-<!--			<artifactId>pagehelper-spring-boot-starter</artifactId>-->
-<!--			<version>1.2.13</version>-->
+<!--			<groupId>com.squareup.retrofit2</groupId>-->
+<!--			<artifactId>converter-scalars</artifactId>-->
+<!--			<version>2.9.0</version>-->
 <!--		</dependency>-->
-<!--		<dependency>-->
+
+
+		<!--		<dependency>-->
 <!--			<groupId>com.squareup.retrofit2</groupId>-->
 <!--			<artifactId>adapter-rxjava</artifactId>-->
 <!--			<version>2.1.0</version>-->
@@ -106,7 +114,7 @@
 		<dependency>
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>adapter-rxjava2</artifactId>
-			<version>2.4.0</version>
+			<version>2.9.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.reactivex.rxjava2</groupId>
@@ -131,7 +139,11 @@
 			<version>1.4.7.RELEASE</version>
 		</dependency>
 
-
+<!--		<dependency>-->
+<!--			<groupId>com.github.pagehelper</groupId>-->
+<!--			<artifactId>pagehelper</artifactId>-->
+<!--			<version>5.1.10</version>-->
+<!--		</dependency>-->
 
 	</dependencies>
 
@@ -142,6 +154,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<classifier>exec</classifier>
+					<includeSystemScope>true</includeSystemScope>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
