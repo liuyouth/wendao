@@ -1,5 +1,6 @@
 package pub.moi.wendao.controller
 
+import org.apache.commons.beanutils.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.data.domain.Page
@@ -68,6 +69,7 @@ public class AnswerController{
             return RBuilder.failed("权限错误")
         qu.isDel =true
         qu = repository.save(qu)
+
         return RBuilder.seccess(qu)
     }
 

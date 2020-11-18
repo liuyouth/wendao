@@ -10,10 +10,9 @@ import pub.moi.wendao.db.QuestionRepository
 
 import pub.moi.wendao.java.authorization.annotation.Authorization
 import pub.moi.wendao.java.authorization.annotation.CurrentUser
-import pub.moi.wendao.model.base.Question
-import pub.moi.wendao.model.base.RBuilder
-import pub.moi.wendao.model.base.Result
-import pub.moi.wendao.model.base.User
+import pub.moi.wendao.model.base.*
+import pub.moi.wendao.model.vo.QuestionVO
+import pub.moi.wendao.service.QAService
 import pub.moi.wendao.service.QuestionService
 import pub.moi.wendao.utils.Utils
 import javax.websocket.server.PathParam
@@ -29,6 +28,9 @@ public class QuestionController{
     @Autowired
     @Qualifier("QuestionService")
     lateinit var service : QuestionService
+    @Autowired
+    @Qualifier("QAService")
+    lateinit var qAService : QAService
 
     /**
      * 列表接口（附带模糊搜索功能）
@@ -37,9 +39,10 @@ public class QuestionController{
     fun  get(
              @RequestParam(name = "searchStr", defaultValue = "")  searchStr:String,
              @PathParam("currentPage") currentPage:Int,
-             @PathParam("pageSize") pageSize:Int): Page<Question> {
+             @PathParam("pageSize") pageSize:Int): PageResult<QuestionVO> {
         val pageable: Pageable = PageRequest.of(currentPage, pageSize)
-        return  service.search(pageable,searchStr)
+        return qAService.findQuestionList(pageable,searchStr)
+
     }
     /**
      * 根据用户编号获取当前用户的问题列表
@@ -85,5 +88,13 @@ public class QuestionController{
         return RBuilder.seccess(qu)
     }
 
+    /**
+     * 获取编号问题Vo
+     */
+    @GetMapping("/no")
+    @ResponseBody
+    fun getByNo(@PathParam("no") no: Long):Result<QuestionVO>{
+        return RBuilder.seccess(qAService.findQuestionByNo(no))
+    }
 
 }
