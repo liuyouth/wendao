@@ -39,7 +39,7 @@ public class QuestionController{
     fun  get(
              @RequestParam(name = "searchStr", defaultValue = "")  searchStr:String,
              @PathParam("currentPage") currentPage:Int,
-             @PathParam("pageSize") pageSize:Int): PageResult<QuestionVO> {
+             @PathParam("pageSize") pageSize:Int): Page<QuestionVO> {
         val pageable: Pageable = PageRequest.of(currentPage, pageSize)
         return qAService.findQuestionList(pageable,searchStr)
 

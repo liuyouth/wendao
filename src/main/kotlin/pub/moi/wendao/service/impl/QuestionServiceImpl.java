@@ -19,7 +19,7 @@ public class QuestionServiceImpl implements QuestionService {
     final
     QuestionRepository repository;
 
-    public QuestionServiceImpl(QuestionRepository repository) {
+    public QuestionServiceImpl( QuestionRepository repository) {
         this.repository = repository;
     }
 

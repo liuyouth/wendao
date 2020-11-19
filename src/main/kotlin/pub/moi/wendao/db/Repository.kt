@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service
 import pub.moi.wendao.model.base.Answer
 import pub.moi.wendao.model.base.Question
 import pub.moi.wendao.model.base.User
+import pub.moi.wendao.service.IQuestionJPA
 import java.util.ArrayList
 import javax.persistence.criteria.CriteriaBuilder
 import javax.persistence.criteria.CriteriaQuery
@@ -19,8 +20,8 @@ import javax.persistence.criteria.Root
 
 
 @Repository
-interface QuestionRepository : JpaRepository<Question, Int>, JpaSpecificationExecutor<Question>{
-    fun findByNumber(num:Long): Question?
+interface QuestionRepository : JpaRepository<Question, Int>, JpaSpecificationExecutor<Question>,IQuestionJPA{
+
 }
 
 @Repository

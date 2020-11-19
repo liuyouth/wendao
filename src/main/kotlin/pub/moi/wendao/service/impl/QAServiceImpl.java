@@ -9,16 +9,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pub.moi.wendao.db.AnswerRepository;
-import pub.moi.wendao.db.QuestionRepository;
 import pub.moi.wendao.db.UserRepository;
 import pub.moi.wendao.model.base.Answer;
-import pub.moi.wendao.model.base.PageResult;
 import pub.moi.wendao.model.base.Question;
 import pub.moi.wendao.model.vo.AnswerVO;
 import pub.moi.wendao.model.vo.QuestionVO;
 import pub.moi.wendao.service.AnswerService;
 import pub.moi.wendao.service.QAService;
-import pub.moi.wendao.service.QuestionService;
+import pub.moi.wendao.service.QService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +26,15 @@ import java.util.List;
 public class QAServiceImpl implements QAService {
 
     @Autowired
-    @Qualifier("QuestionService")
-    QuestionService questionService;
+    @Qualifier("QuService")
+    QService questionService;
+
     @Autowired
     @Qualifier("AnswerService")
     AnswerService answerService;
-
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    QuestionRepository questionRepository;
+
     @Autowired
     AnswerRepository answerRepository;
 
@@ -45,30 +42,15 @@ public class QAServiceImpl implements QAService {
 
     @NotNull
     @Override
-    public PageResult<QuestionVO> findQuestionList(@NotNull Pageable pageable, @NotNull String searchStr) {
+    public Page<QuestionVO> findQuestionList(@NotNull Pageable pageable, @NotNull String searchStr) {
         Page<Question> page = questionService.search(pageable,searchStr);
-        PageResult<QuestionVO> result  = new  PageResult<>();
-        result.setCode(200);
-        result.setAllPage(page.getTotalPages());
-        result.setTotal(page.getTotalElements());
-        ArrayList<QuestionVO> vos = new ArrayList<>();
-        for (int i = 0; i < page.getContent().size(); i++) {
-            vos.add(findQuestionByNo(page.getContent().get(i).getNumber()));
-        }
-        result.setData(vos);
-//        Page<QuestionVO> voPage = Page.empty(pageable);
-//        BeanUtils.copyProperties(page,voPage);
-//        System.out.println(page);
-//        System.out.println(voPage);
-
-//        page.getContent().forEach(question -> voPage.getContent().add(findQuestionByNo(question.getNumber())));
-        return result;
+        return page.map(question -> findQuestionByNo(question.getNumber()));
     }
 
     @Nullable
     @Override
     public QuestionVO findQuestionByNo(long number) {
-        Question qu =  questionRepository.findByNumber(number);
+        Question qu =  questionService.findByNumber(number);
         if (qu==null)
             return null;
         QuestionVO vo = new QuestionVO();
