@@ -1,4 +1,4 @@
-package pub.moi.wendao.service.impl;
+package pub.moi.wendao.voservice.impl;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -15,8 +15,8 @@ import pub.moi.wendao.model.base.Question;
 import pub.moi.wendao.model.vo.AnswerVO;
 import pub.moi.wendao.model.vo.QuestionVO;
 import pub.moi.wendao.service.AnswerService;
-import pub.moi.wendao.service.QAService;
 import pub.moi.wendao.service.QService;
+import pub.moi.wendao.voservice.QAService;
 
 import java.util.ArrayList;
 import java.util.List;

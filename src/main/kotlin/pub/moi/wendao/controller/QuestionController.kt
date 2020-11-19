@@ -12,7 +12,7 @@ import pub.moi.wendao.java.authorization.annotation.Authorization
 import pub.moi.wendao.java.authorization.annotation.CurrentUser
 import pub.moi.wendao.model.base.*
 import pub.moi.wendao.model.vo.QuestionVO
-import pub.moi.wendao.service.QAService
+import pub.moi.wendao.voservice.QAService
 import pub.moi.wendao.service.QuestionService
 import pub.moi.wendao.utils.Utils
 import javax.websocket.server.PathParam

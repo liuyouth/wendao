@@ -8,7 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import pub.moi.wendao.db.QuestionRepository;
 import pub.moi.wendao.model.base.Question;
-import pub.moi.wendao.service.BaseServiceImpl;
+import pub.moi.wendao.service.base.BaseServiceImpl;
 import pub.moi.wendao.service.QService;
 
 import javax.persistence.criteria.Predicate;

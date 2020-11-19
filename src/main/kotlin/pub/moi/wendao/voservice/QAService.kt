@@ -1,4 +1,4 @@
-package pub.moi.wendao.service
+package pub.moi.wendao.voservice
 
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable

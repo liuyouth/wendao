@@ -1,4 +1,4 @@
-package pub.moi.wendao.service
+package pub.moi.wendao.service.base
 
 import org.springframework.data.domain.Example
 import org.springframework.data.domain.Page
