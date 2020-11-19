@@ -28,7 +28,6 @@ public class QServiceImpl extends BaseServiceImpl<Question,Integer, QuestionRepo
         Specification<Question> specification = (Specification<Question>) (root, query, criteriaBuilder) -> {
             List<Predicate> list = new ArrayList<>();
             // 第一个userId为CloudServerDao中的字段，第二个userId为参数
-            getRepository().findByNumber(00);
             if (userNo!=0) {
                 Predicate p1 = criteriaBuilder.equal(root.get("postUserNo"), userNo);
                 list.add(p1);

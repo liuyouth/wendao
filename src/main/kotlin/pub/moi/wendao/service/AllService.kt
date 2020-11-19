@@ -2,8 +2,6 @@ package pub.moi.wendao.service
 
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import pub.moi.wendao.db.QuestionRepository
-import pub.moi.wendao.model.base.Answer
 import pub.moi.wendao.model.base.Question
 
 interface QuestionService{
